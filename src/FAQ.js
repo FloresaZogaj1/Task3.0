@@ -1,78 +1,43 @@
 import React, { useState } from 'react';
-import './FAQ.css'; // Assumed to be the CSS file
+import { FaUserCircle } from 'react-icons/fa'; 
+import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'; 
+import './FAQ.css';
 
 const FAQ = () => {
-  const [toggleStates, setToggleStates] = useState({
-    aboutUs: false,
-    question1: false,
-    question2: false,
-    question3: false,
-    question4: false,
-  });
+  const [activeIndex, setActiveIndex] = useState(null);
 
-  const handleToggle = (question) => {
-    setToggleStates({
-      ...toggleStates,
-      [question]: !toggleStates[question],
-    });
+  const questions = [
+    {
+      question: 'How does Parkname separate itself from other domain name parking companies?',
+      answer: 'Your domains are a valuable online property. As in any investment, you want the most efficient, easy way to make sure your property is going to be profitable. Do you own more than 1,000 domains? As a professional domainer, you will find everything you need through Parkname to generate maximum profits from your domain portfolio.',
+    },
+    { question: 'Is Parkname Parking actually free?', answer: 'Yes, Parkname Parking is free to use.' },
+    { question: 'What do you do?', answer: 'We provide domain parking services to help you earn from your unused domains.' },
+    { question: 'When was Parkname first founded?', answer: 'Parkname was founded in 2010.' },
+  ];
+
+  const toggleAnswer = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
-    <div className="faq-container">
-      <div className="faq">
-        <div className="faq-item">
-          <button onClick={() => handleToggle('aboutUs')} className="faq-question">
-            About Us
-          </button>
-          {toggleStates.aboutUs && (
-            <div className="faq-answer">
-              <div className="faq-item">
-                <p>4 articles in this topic</p>
-              </div>
-              <div className="faq-item">
-                <button onClick={() => handleToggle('question1')} className="faq-question">
-                  How does Parkname separate itself from other domain name parking companies?
-                </button>
-                {toggleStates.question1 && (
-                  <div className="faq-answer">
-                    Your domains are a valuable online property. As in any investment, you want the most efficient, easy way to make sure your property is going to be profitable. Do you own more than 1,000 domains? As a professional domainer, you will find everything you need through Parkname to generate maximum profits from your domain portfolio.
-                  </div>
-                )}
-              </div>
-              <div className="faq-item">
-                <button onClick={() => handleToggle('question2')} className="faq-question">
-                  Is Parkname Parking actually free?
-                </button>
-                {toggleStates.question2 && (
-                  <div className="faq-answer">
-                    Yes, Parkname offers free parking services with the option to upgrade for more features.
-                  </div>
-                )}
-              </div>
-              <div className="faq-item">
-                <button onClick={() => handleToggle('question3')} className="faq-question">
-                  What do you do?
-                </button>
-                {toggleStates.question3 && (
-                  <div className="faq-answer">
-                    Parkname specializes in domain name parking, helping users monetize their unused domains by displaying relevant ads.
-                  </div>
-                )}
-              </div>
-              <div className="faq-item">
-                <button onClick={() => handleToggle('question4')} className="faq-question">
-                  When was Parkname first founded?
-                </button>
-                {toggleStates.question4 && (
-                  <div className="faq-answer">
-                    Parkname was founded in 2010 and has been growing ever since.
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+    <div className="faq">
+      <div className="faq-header">
+        <div className="header-title">
+          <FaUserCircle className="faq-icon" />
+          <h2>About Us</h2>
         </div>
+        <span>4 articles in this Topic</span>
       </div>
+      {questions.map((item, index) => (
+        <div key={index} className="faq-item">
+          <div className="faq-question" onClick={() => toggleAnswer(index)}>
+            <span>{item.question}</span>
+            {activeIndex === index ? <IoIosArrowDown /> : <IoIosArrowForward />}
+          </div>
+          {activeIndex === index && <div className="faq-answer">{item.answer}</div>}
+        </div>
+      ))}
     </div>
   );
 };
