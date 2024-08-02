@@ -4,7 +4,7 @@ import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 import './FAQ.css';
 
 const FAQ = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [openIndexes, setOpenIndexes] = useState([]);
 
   const questions = [
     {
@@ -17,7 +17,9 @@ const FAQ = () => {
   ];
 
   const toggleAnswer = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
+    setOpenIndexes(prevIndexes =>
+      prevIndexes.includes(index) ? prevIndexes.filter(i => i !== index) : [...prevIndexes, index]
+    );
   };
 
   return (
@@ -31,11 +33,20 @@ const FAQ = () => {
       </div>
       {questions.map((item, index) => (
         <div key={index} className="faq-item">
-          <div className="faq-question" onClick={() => toggleAnswer(index)}>
+          <div 
+            className="faq-question" 
+            onClick={() => toggleAnswer(index)} 
+            aria-expanded={openIndexes.includes(index)}
+          >
             <span>{item.question}</span>
-            {activeIndex === index ? <IoIosArrowDown /> : <IoIosArrowForward />}
+            {openIndexes.includes(index) ? <IoIosArrowDown /> : <IoIosArrowForward />}
           </div>
-          {activeIndex === index && <div className="faq-answer">{item.answer}</div>}
+          <div 
+            className="faq-answer" 
+            style={{ maxHeight: openIndexes.includes(index) ? '500px' : '0' }}
+          >
+            {item.answer}
+          </div>
         </div>
       ))}
     </div>
