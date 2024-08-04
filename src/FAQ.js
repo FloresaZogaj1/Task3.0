@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { FaUserCircle } from 'react-icons/fa'; 
-import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'; 
+import React, { useState, useEffect } from 'react';
+import { FaUserCircle } from 'react-icons/fa';
+import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 import './FAQ.css';
 
 const FAQ = () => {
   const [openIndexes, setOpenIndexes] = useState([]);
+  const [activeSection, setActiveSection] = useState('about');
 
   const questions = [
     {
@@ -17,38 +18,56 @@ const FAQ = () => {
   ];
 
   const toggleAnswer = (index) => {
-    setOpenIndexes(prevIndexes =>
-      prevIndexes.includes(index) ? prevIndexes.filter(i => i !== index) : [...prevIndexes, index]
+    setOpenIndexes((prevIndexes) =>
+      prevIndexes.includes(index)
+        ? prevIndexes.filter((i) => i !== index)
+        : [...prevIndexes, index]
     );
   };
 
+  const handleSectionClick = () => {
+    setActiveSection((prevSection) =>
+      prevSection === 'about' ? '' : 'about'
+    );
+  };
+
+  useEffect(() => {
+    setActiveSection('about');
+  }, []);
+
   return (
     <div className="faq">
-      <div className="faq-header">
+      <div className="faq-header" onClick={handleSectionClick}>
         <div className="header-title">
           <FaUserCircle className="faq-icon" />
-          <h2>About Us</h2>
+          <div className="header-text">
+            <h2>About Us</h2>
+            <span className="articles-count">4 articles in this Topic</span>
+          </div>
         </div>
-        <span>4 articles in this Topic</span>
+        {activeSection === 'about' ? <IoIosArrowDown /> : <IoIosArrowForward />}
       </div>
-      {questions.map((item, index) => (
-        <div key={index} className="faq-item">
-          <div 
-            className="faq-question" 
-            onClick={() => toggleAnswer(index)} 
-            aria-expanded={openIndexes.includes(index)}
-          >
-            <span>{item.question}</span>
-            {openIndexes.includes(index) ? <IoIosArrowDown /> : <IoIosArrowForward />}
-          </div>
-          <div 
-            className="faq-answer" 
-            style={{ maxHeight: openIndexes.includes(index) ? '500px' : '0' }}
-          >
-            {item.answer}
-          </div>
+      {activeSection === 'about' && (
+        <div className="faq-content">
+          {questions.map((item, index) => (
+            <div key={index} className="faq-item">
+              <div
+                className="faq-question"
+                onClick={() => toggleAnswer(index)}
+                aria-expanded={openIndexes.includes(index)}
+              >
+                <span>{item.question}</span>
+                {openIndexes.includes(index) ? <IoIosArrowDown /> : <IoIosArrowForward />}
+              </div>
+              <div
+                className={`faq-answer ${openIndexes.includes(index) ? 'open' : ''}`}
+              >
+                {item.answer}
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };
