@@ -1,23 +1,25 @@
 html, body {
   height: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
 }
 
 .faq {
-  width: 50rem;
+  width: 40rem;
+  max-width: 100%;
   font-family: Arial, sans-serif;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
   background-color: #fff;
- }
+  box-sizing: border-box;
+}
 
 .faq-header {
   display: flex;
@@ -50,7 +52,7 @@ body {
 
 .articles-count {
   display: block;
-  margin-top: 5px; 
+  margin-top: 5px;
   color: #888;
 }
 
@@ -85,10 +87,11 @@ body {
   padding-left: 20px;
   max-height: 0;
   overflow: hidden;
+  transition: max-height 0.3s ease-out;
 }
 
 .faq-answer.open {
-  max-height: 500px; 
+  max-height: 500px;
 }
 
 @media (max-width: 1200px) {
