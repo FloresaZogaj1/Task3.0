@@ -50,7 +50,7 @@ body {
 .faq-icon {
   font-size: 40px;
   margin-right: 10px;
-  color: #007bff;
+  color: #333;
   transition: transform 0.3s ease;
 }
 
@@ -62,7 +62,7 @@ body {
 }
 
 .faq-header:hover h2 {
-  color: #007bff;
+  color: #333;
 }
 
 .articles-count {
@@ -90,7 +90,7 @@ body {
 }
 
 .faq-question:hover {
-  color: #007bff;
+  color: #333;
 }
 
 .faq-question span {
