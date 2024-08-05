@@ -11,15 +11,13 @@ body {
 }
 
 .faq {
-  width: 100%;
-  max-width: 800px;
+  width: 50rem;
   font-family: Arial, sans-serif;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
   background-color: #fff;
-  box-sizing: border-box;
-}
+ }
 
 .faq-header {
   display: flex;
