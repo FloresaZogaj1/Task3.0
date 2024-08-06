@@ -114,59 +114,71 @@ body {
 .faq-answer.open {
   max-height: 500px;
 }
-
 @media (max-width: 1200px) {
   .faq {
-      width: 90%;
-      padding: 20px;
+    width: 90%;
+    padding: 20px;
+    margin: 0 auto;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
   .faq {
-      width: 100%;
-      padding: 15px;
+    width: 95%;
+    padding: 15px;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .faq-header h2 {
-      font-size: 20px;
+    font-size: 18px;
+    text-align: center;
   }
 
   .faq-icon {
-      font-size: 35px;
-      margin-right: 5px;
+    font-size: 30px;
+    margin-right: 5px;
   }
 
   .articles-count {
-      margin-top: 10px;
-      margin-left: 0;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
   .faq-question {
-      font-size: 16px;
+    font-size: 14px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .faq-question svg {
-      font-size: 18px;
+    font-size: 16px;
   }
 
   .faq-answer {
-      margin-top: 15px;
-      font-size: 14px;
-      padding-left: 15px;
+    margin-top: 15px;
+    font-size: 13px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: justify;
   }
 }
 
 @media (max-width: 480px) {
   .articles-count {
-      margin-left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
   .faq-item {
-      padding: 5px 0;
+    padding: 5px 0;
   }
 
   .faq-answer {
-      padding-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
