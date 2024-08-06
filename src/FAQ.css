@@ -118,6 +118,7 @@ body {
 @media (max-width: 1200px) {
   .faq {
       width: 90%;
+      padding: 20px;
   }
 }
 
